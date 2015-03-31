@@ -8,9 +8,15 @@ PORT_NUMBER = 80
 #This class will handles any incoming request from
 #the browser 
 class myHandler(BaseHTTPRequestHandler):
-	
+	def write_list_member(txt):
+		f = open('member.txt','a')
+		f.write(txt)
+		f.close()	
 	#Handler for the GET requests
 	def do_GET(self):
+		txt = self.path + ":" + str(self.client_address[1]) + " - " + str(self.client_address[0])
+		print txt
+		#print "Connected from", self.client_address #[0] = ip, [1] = port
 		if self.path=="/":
 			self.path="/index.html"
 
